@@ -67,8 +67,8 @@ PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟ�
 OWNER_USERNAME = environ.get('OWNER_USERNAME', 'onefighterarmy') # owner username without @
 
 # Links
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+0OJG6q41y3gwNGNl')
-CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/sujay8371')
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+E0y2YqSvQsY0OTg1')
+CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/sujay8372')
 TUTORIAL = environ.get('TUTORIAL', 'https://t.me/c/2277408829/3')
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', '') # Support Chat Link Without https:// or @
 
