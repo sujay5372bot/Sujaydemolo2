@@ -103,8 +103,8 @@ VERIFY_TUTORIAL = environ.get('VERIFY_TUTORIAL', 'https://t.me/c/2277408829/3')
 
 # Shortlink Info
 SHORTLINK_MODE = bool(environ.get('SHORTLINK_MODE', True))
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'linkpays.in')
-SHORTLINK_API = environ.get('SHORTLINK_API', '6b6558a80696400e19688fe48e278677305411f2')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'onylinks.com')
+SHORTLINK_API = environ.get('SHORTLINK_API', 'e0b993ab824859c3375b05a636c32f5b61d528d2')
 
 # Others
 MAX_B_TN = environ.get("MAX_B_TN", "5")
