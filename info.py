@@ -67,9 +67,9 @@ PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟ�
 OWNER_USERNAME = environ.get('OWNER_USERNAME', 'onefighterarmy') # owner username without @
 
 # Links
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+E0y2YqSvQsY0OTg1')
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/sujay8372')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/sujay8372')
-TUTORIAL = environ.get('TUTORIAL', 'https://t.me/c/2277408829/3')
+TUTORIAL = environ.get('TUTORIAL', 'https://t.me/sujay8372')
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', '') # Support Chat Link Without https:// or @
 
 # True Or False
@@ -102,7 +102,7 @@ VERIFY_SND_SHORTLINK_API = environ.get('VERIFY_SND_SHORTLINK_API', '6b6558a80696
 VERIFY_TUTORIAL = environ.get('VERIFY_TUTORIAL', 'https://t.me/c/2277408829/3')
 
 # Shortlink Info
-SHORTLINK_MODE = bool(environ.get('SHORTLINK_MODE', True))
+SHORTLINK_MODE = bool(environ.get('SHORTLINK_MODE', False))
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'onylinks.com')
 SHORTLINK_API = environ.get('SHORTLINK_API', 'e0b993ab824859c3375b05a636c32f5b61d528d2')
 
