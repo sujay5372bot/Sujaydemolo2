@@ -630,6 +630,82 @@ async def start(client, message):
         except:
             pass
         return await message.reply('No such file exist.')
+     #   from pyrogram import Client, filters
+#from pyrogram.types import Message
+#import sqlite3
+
+# Bot credentials
+API_ID =  25251875    # Replace with your API ID
+API_HASH = "9f413b540c859573a91299d252e6e389"
+BOT_TOKEN = "7385431208:AAGAkXPP9R12A5ZpJlZUQB08LdqOrdkCUos"
+
+app = Client("Sujay_file_search_Bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+
+# Setup database
+conn = sqlite3.connect("referrals.db")
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS users (
+    user_id INTEGER PRIMARY KEY,
+    referred_by INTEGER,
+    referrals INTEGER DEFAULT 0,
+    reward_given INTEGER DEFAULT 0
+)''')
+conn.commit()
+
+def add_user(user_id, referred_by=None):
+    c.execute("SELECT user_id FROM users WHERE user_id = ?", (user_id,))
+    if c.fetchone() is None:
+        c.execute("INSERT INTO users (user_id, referred_by) VALUES (?, ?)", (user_id, referred_by))
+        conn.commit()
+        if referred_by:
+            c.execute("UPDATE users SET referrals = referrals + 1 WHERE user_id = ?", (referred_by,))
+            conn.commit()
+
+def get_referrals(user_id):
+    c.execute("SELECT referrals FROM users WHERE user_id = ?", (user_id,))
+    row = c.fetchone()
+    return row[0] if row else 0
+
+def has_reward(user_id):
+    c.execute("SELECT reward_given FROM users WHERE user_id = ?", (user_id,))
+    row = c.fetchone()
+    return row[0] == 1 if row else False
+
+def give_reward(user_id):
+    c.execute("UPDATE users SET reward_given = 1 WHERE user_id = ?", (user_id,))
+    conn.commit()
+
+@app.on_message(filters.command("start"))
+async def start(client, message: Message):
+    user_id = message.from_user.id
+    args = message.text.split()
+    referred_by = None
+
+    if len(args) > 1 and args[1].isdigit():
+        referred_by = int(args[1])
+        if referred_by == user_id:
+            referred_by = None  # Prevent self-referral
+
+    add_user(user_id, referred_by)
+
+    if referred_by:
+        ref_count = get_referrals(referred_by)
+        if ref_count >= 3 and not has_reward(referred_by):
+            give_reward(referred_by)
+            await client.send_message(referred_by, "Congrats! You've referred 3 people and earned access to the movie!")
+
+    await message.reply("Welcome! Use /myref to get your referral link.")
+
+@app.on_message(filters.command("myref"))
+async def myref(client, message: Message):
+    user_id = message.from_user.id
+    bot_info = await client.get_me()
+    username = bot_info.username
+    ref_link = f"https://t.me/{username}?start={user_id}"
+    count = get_referrals(user_id)
+    await message.reply(f"Your referral link:\n{ref_link}\n\nYou've referred {count} people.")
+
+app.run()
     files = files_[0]
     title = '@onefighterarmy  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
     size=get_size(files.file_size)
