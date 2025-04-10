@@ -19,9 +19,26 @@ logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
 join_db = JoinReqs
+user_referrals = {}  # In-memory store (use database for production)
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
+    args = message.text.split()
+    if len(args) > 1:
+        referrer_id = int(args[1])
+        referred_id = message.from_user.id
+
+        if referrer_id != referred_id:
+            if referrer_id not in user_referrals:
+                user_referrals[referrer_id] = set()
+            user_referrals[referrer_id].add(referred_id)
+
+    count = len(user_referrals.get(message.from_user.id, set()))
+    if count >= 3:
+        await message.reply("Aapne 3 log invite kar liye hain! Yahan aapki movie:")
+        # Send movie or enable filter here
+    else:
+        await message.reply(f"Aapne {count}/3 log invite kiye hain. 3 hone par movie milegi.")
     await message.react(emoji="🔥")
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
