@@ -24,33 +24,33 @@ join_db = JoinReqs
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
     # SQLite DB for users and referrals
-conn = sqlite3.connect('referrals.db')
-c = conn.cursor()
-c.execute('''CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY, referrals INTEGER DEFAULT 0, referred_by INTEGER)''')
-conn.commit()
+#conn = sqlite3.connect('referrals.db')
+#c = conn.cursor()
+#c.execute('''CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY, referrals INTEGER DEFAULT 0, referred_by INTEGER)''')
+#conn.commit()
 
-@bot.on_message(filters.private & filters.command("start"))
-async def start(client, message: Message):
-    user_id = message.from_user.id
-    args = message.text.split()
+#@bot.on_message(filters.private & filters.command("start"))
+#async def start(client, message: Message):
+  #  user_id = message.from_user.id
+   # args = message.text.split()
 
-    # If this is a referral link with /start USERID
-    if len(args) > 1:
-        referred_by = int(args[1])
-        c.execute("INSERT OR IGNORE INTO users (user_id, referrals, referred_by) VALUES (?, 0, ?)", (user_id, referred_by))
-        c.execute("UPDATE users SET referrals = referrals + 1 WHERE user_id = ?", (referred_by,))
-    else:
-        c.execute("INSERT OR IGNORE INTO users (user_id) VALUES (?)", (user_id,))
-    conn.commit()
+   # # If this is a referral link with /start USERID
+   # if len(args) > 1:
+   #     referred_by = int(args[1])
+   #     c.execute("INSERT OR IGNORE INTO users (user_id, referrals, referred_by) VALUES (?, 0, ?)", (user_id, referred_by))
+   #     c.execute("UPDATE users SET referrals = referrals + 1 WHERE user_id = ?", (referred_by,))
+ #   else:
+  #      c.execute("INSERT OR IGNORE INTO users (user_id) VALUES (?)", (user_id,))
+#    conn.commit()
 
-    # Check referral status
-    c.execute("SELECT referrals FROM users WHERE user_id = ?", (user_id,))
-    row = c.fetchone()
-    if row and row[0] >= 3:
-        await message.reply("Congrats! You have unlocked the movie.")
-    else:
-        await message.reply("3 hone par movie milegi.\nYour referral link:\n"
-                            f"https://t.me/Sujay_file_search_Botstart={user_id}")
+  # ## Check referral status
+  #  c.execute("SELECT referrals FROM users WHERE user_id = ?", (user_id,))
+  #  row = c.fetchone()
+ #   if row and row[0] >= 3:
+   #     await message.reply("Congrats! You have unlocked the movie.")
+ #   else:
+      #  await message.reply("3 hone par movie milegi.\nYour referral link:\n"
+     #                       f"https://t.me/Sujay_file_search_Botstart={user_id}")
  #   args = message.text.split()
   #  if len(args) > 1:
    #     referrer_id = int(args[1])
