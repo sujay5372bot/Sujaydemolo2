@@ -19,26 +19,54 @@ logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
 join_db = JoinReqs
-user_referrals = {}  # In-memory store (use database for production)
+# user_referrals = {}  # In-memory store (use database for production)
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
+    # SQLite DB for users and referrals
+conn = sqlite3.connect('referrals.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY, referrals INTEGER DEFAULT 0, referred_by INTEGER)''')
+conn.commit()
+
+@bot.on_message(filters.private & filters.command("start"))
+async def start(client, message: Message):
+    user_id = message.from_user.id
     args = message.text.split()
+
+    # If this is a referral link with /start USERID
     if len(args) > 1:
-        referrer_id = int(args[1])
-        referred_id = message.from_user.id
-
-        if referrer_id != referred_id:
-            if referrer_id not in user_referrals:
-                user_referrals[referrer_id] = set()
-            user_referrals[referrer_id].add(referred_id)
-
-    count = len(user_referrals.get(message.from_user.id, set()))
-    if count >= 3:
-        await message.reply("Aapne 3 log invite kar liye hain! Yahan aapki movie:")
-        # Send movie or enable filter here
+        referred_by = int(args[1])
+        c.execute("INSERT OR IGNORE INTO users (user_id, referrals, referred_by) VALUES (?, 0, ?)", (user_id, referred_by))
+        c.execute("UPDATE users SET referrals = referrals + 1 WHERE user_id = ?", (referred_by,))
     else:
-        await message.reply(f"Aapne {count}/3 log invite kiye hain. 3 hone par movie milegi.")
+        c.execute("INSERT OR IGNORE INTO users (user_id) VALUES (?)", (user_id,))
+    conn.commit()
+
+    # Check referral status
+    c.execute("SELECT referrals FROM users WHERE user_id = ?", (user_id,))
+    row = c.fetchone()
+    if row and row[0] >= 3:
+        await message.reply("Congrats! You have unlocked the movie.")
+    else:
+        await message.reply("3 hone par movie milegi.\nYour referral link:\n"
+                            f"https://t.me/Sujay_file_search_Botstart={user_id}")
+ #   args = message.text.split()
+  #  if len(args) > 1:
+   #     referrer_id = int(args[1])
+    #    referred_id = message.from_user.id
+
+     #   if referrer_id != referred_id:
+      #      if referrer_id not in user_referrals:
+        #        user_referrals[referrer_id] = set()
+        #    user_referrals[referrer_id].add(referred_id)
+
+ #   count = len(user_referrals.get(message.from_user.id, set()))
+  #  if count >= 3:
+   #     await message.reply("Aapne 3 log invite kar liye hain! Yahan aapki movie:")
+        # Send movie or enable filter here
+ #   else:
+   #     await message.reply(f"Aapne {count}/3 log invite kiye hain. 3 hone par movie milegi /n/n invite link 👉https://t.me/+DFOJcKQURKo4OTM1.")
     await message.react(emoji="🔥")
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
