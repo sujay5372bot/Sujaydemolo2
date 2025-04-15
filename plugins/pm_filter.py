@@ -1668,12 +1668,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
           #  InlineKeyboardButton('⚙ Sᴇᴛᴛɪɴɢs', callback_data='openSettings'),
         #    InlineKeyboardButton('♥️ Aʙᴏᴜᴛ', callback_data='about')
         ],[
-       #     InlineKeyboardButton('⪦ 𝕄𝕆𝕍𝕀𝔼 ℂℍ𝔸ℕℕ𝔼𝕃 ⪧', url='https://t.me/real_MoviesAdda3')
+       #     InlineKeyboardButton('⪦ 𝕄𝕆𝕍𝕀𝔼 ℂℍ𝔸ℕℕ𝔼𝕃 ⪧', url='https://t.me/onefighterarmy')
         ],[
        #     InlineKeyboardButton('💸 E𝐚𝐫𝐧 M𝐨𝐧𝐞𝐲 💸', callback_data="shortlink_info")
         ],[
           #      InlineKeyboardButton(
-            #        "🦋 SUBSCRIBE YT Channel 🦋", url='https://youtube.com/@LazyDeveloperr'
+            #        "🦋 SUBSCRIBE YT Channel 🦋", url='https://t.me/onfighterarmy'
                 )
             ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -1802,10 +1802,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = InlineKeyboardMarkup(
             [[
             InlineKeyboardButton('🏠 Home', callback_data='start'),
-            InlineKeyboardButton('♥️ Aʙᴏᴜᴛ', callback_data='about')
+           # InlineKeyboardButton('♥️ Aʙᴏᴜᴛ', callback_data='about')
             ],[
             InlineKeyboardButton('Open settings', callback_data='openSettings'),
-         #   InlineKeyboardButton('💤Developer', url='https://telegram.me/LazyDeveloper')
+         #   InlineKeyboardButton('💤Developer', url='https://telegram.me/onefighterarmy')
             ],[
             InlineKeyboardButton('🔐 Close', callback_data='close_data')
             ]]
