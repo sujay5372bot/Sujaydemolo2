@@ -70,7 +70,7 @@ async def start(client, message):
         #    InlineKeyboardButton('💸 E𝐚𝐫𝐧 M𝐨𝐧𝐞𝐲 💸', callback_data="shortlink_info")
             ],[
               #  InlineKeyboardButton(
-                 #   "🦋 SUBSCRIBE YT Channel 🦋", url='https://youtube.com/@La'
+                 #   "🦋 SUBSCRIBE YT Channel 🦋", url='https://t.me/onefighterarmy'
               #  )
             ]]
         reply_markup = InlineKeyboardMarkup(buttons)
