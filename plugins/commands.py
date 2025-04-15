@@ -30,13 +30,13 @@ async def start(client, message):
             [
                 InlineKeyboardButton('🔍 Group​​​​​', url=f'https://t.me/{MOVIE_GROUP_USERNAME}')
             ],
-            [
+         #   [
              #   InlineKeyboardButton('🙆🏻 Hᴇʟᴘ 🦾', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            ],[
+         #   ],[
            # InlineKeyboardButton('⪦ 𝕄𝕆𝕍𝕀𝔼 ℂℍ𝔸ℕℕ𝔼𝕃 ⪧', url='https://t.me/sujay8372')
-            ],[
+        #    ],[
            # InlineKeyboardButton('💸 E𝐚𝐫𝐧 M𝐨𝐧𝐞𝐲 💸', callback_data="shortlink_info")
-            ],
+        #    ],
             [
                 InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME,url=DOWNLOAD_TEXT_URL)
             ]
@@ -54,21 +54,21 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('↖️ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘs ↗️', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
+           # InlineKeyboardButton('↖️ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘs ↗️', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+        #    ],[
          #   InlineKeyboardButton('🧞‍♀️ Sᴇᴀʀᴄʜ', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🔍 Gʀᴏᴜᴘ', url=f'https://t.me/{MOVIE_GROUP_USERNAME}')
-            ],[
+         #   InlineKeyboardButton('🔍 Gʀᴏᴜᴘ', url=f'https://t.me/{MOVIE_GROUP_USERNAME}')
+          #  ],[
         #    InlineKeyboardButton('🙆🏻 Hᴇʟᴘ ', callback_data='help'),
         #    InlineKeyboardButton('🎁 Hᴇʟᴘ++', callback_data='leech_url_help'),
-            ],[
+        #    ],[
         #    InlineKeyboardButton('⚙ Sᴇᴛᴛɪɴɢs', callback_data='openSettings'),
           #  InlineKeyboardButton('♥️ Aʙᴏᴜᴛ', callback_data='about')
-            ],[
+      #      ],[
         #    InlineKeyboardButton('⪦ 𝕄𝕆𝕍𝕀𝔼 ℂℍ𝔸ℕℕ𝔼𝕃 ⪧', url='https://t.me/sujay8372')
-            ],[
+       #     ],[
         #    InlineKeyboardButton('💸 E𝐚𝐫𝐧 M𝐨𝐧𝐞𝐲 💸', callback_data="shortlink_info")
-            ],[
+        #    ],[
               #  InlineKeyboardButton(
                  #   "🦋 SUBSCRIBE YT Channel 🦋", url='https://t.me/onefighterarmy'
               #  )
@@ -93,11 +93,11 @@ async def start(client, message):
                     "🤖 Join Updates Channel", url=invite_link.invite_link
                 )
             ],
-             [
-                InlineKeyboardButton(
+           #  [
+           #     InlineKeyboardButton(
                 #    "🦋 SUBSCRIBE YT Channel 🦋", url='https://t.me/sujay8372'
-                )
-            ]
+            #    )
+          #  ]
         ]
 
         if message.command[1] != "subscribe":
@@ -123,19 +123,19 @@ async def start(client, message):
             ],[
         #    InlineKeyboardButton('🙆🏻 Hᴇʟᴘ', callback_data='help'),
        #     InlineKeyboardButton('🎁 Hᴇʟᴘ++ ', callback_data='leech_url_help'),
-        ],[
+     #   ],[
         #    InlineKeyboardButton('⚙ Sᴇᴛᴛɪɴɢs', callback_data='openSettings'),
      #       InlineKeyboardButton('♥️ Aʙᴏᴜᴛ', callback_data='about')
-            ],
-        [
+      #      ],
+   #     [
       #      InlineKeyboardButton('⪦ 𝕄𝕆𝕍𝕀𝔼 ℂℍ𝔸ℕℕ𝔼𝕃 ⪧', url='https://t.me/sujay8372')
-        ],
-        [
+    #    ],
+    #    [
      #       InlineKeyboardButton('💸 E𝐚𝐫𝐧 M𝐨𝐧𝐞𝐲 💸', callback_data="shortlink_info")
-        ],[
+    #    ],[
      #           InlineKeyboardButton(
     #                "🦋 SUBSCRIBE YT Channel 🦋", url='https://t.me/sujay8372'
-                )
+           #     )
             ]
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -198,9 +198,9 @@ async def start(client, message):
                             [
                                 InlineKeyboardButton('▶ Gen Stream / Download Link', callback_data=f'generate_stream_link:{file_id}'),
                             ],
-                            [
+                          #  [
                         #        InlineKeyboardButton('📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌', url=f'https://t.me/onefighterarmy')
-                            ]
+                        #    ]
                         ]
                     )
                     )
